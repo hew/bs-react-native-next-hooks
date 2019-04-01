@@ -1,0 +1,44 @@
+ppx_checked_files = /Users/hew/Code/bs-react-native-next/./ppx/reactjs_jsx_ppx_v3.exe
+bs_package_flags = -bs-package-name bs-react-native-next-demo -bs-package-map BsReactNativeNextDemo
+src_root_dir = /Users/hew/Code/bs-react-native-next
+bsc = /Users/hew/Code/bs-react-native-next/node_modules/bs-platform/lib/bsc.exe
+bsdep = /Users/hew/Code/bs-react-native-next/node_modules/bs-platform/lib/bsb_helper.exe
+warnings = -w -30-40+6+7+27+32..39+44+45+101
+bsc_flags = -bs-suffix -nostdlib -I '/Users/hew/Code/bs-react-native-next/node_modules/bs-platform/lib/ocaml' -color always
+ppx_flags = -ppx '/Users/hew/Code/bs-react-native-next/./ppx/reactjs_jsx_ppx_v3.exe'
+bs_package_includes = -I /Users/hew/Code/bs-react-native-next/node_modules/bs-react-native-monorepo/bs-react-native/lib/ocaml -I /Users/hew/Code/bs-react-native-next/node_modules/bs-react-native-monorepo/bs-react-native-next/lib/ocaml -I /Users/hew/Code/bs-react-native-next/node_modules/reason-react/lib/ocaml
+bs_package_dev_includes = 
+namespace = -ns BsReactNativeNextDemo
+bsb_dir_group = 0
+refmt = /Users/hew/Code/bs-react-native-next/node_modules/bs-platform/lib/refmt.exe
+reason_react_jsx = 
+refmt_flags = --print binary
+bsc_lib_includes = -I . -I src
+rule build_ast_and_module_sets_from_re
+  command = ${bsc} -pp "${refmt} ${refmt_flags}" ${reason_react_jsx}  ${ppx_flags} ${warnings} ${bsc_flags} -c -o ${out} -bs-syntax-only -bs-binary-ast -impl ${in}
+  description = [34mBuilding[39m [2m${out}[22m
+build src/HooksPage.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/HooksPage.re |  ${ppx_checked_files}
+rule build_deps
+  command = ${bsdep} ${namespace} -g ${bsb_dir_group} -MD ${in}
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build src/HooksPage.mlast.d : build_deps src/HooksPage.mlast |  ${ppx_checked_files}
+rule build_cmj_cmi
+  command = ${bsc} ${bs_package_flags} -bs-assume-no-mli -bs-no-builtin-ppx-ml -bs-no-implicit-include ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes} ${warnings} ${bsc_flags} ${gentypeconfig} -o ${out} -c  ${in} $postbuild
+  depfile = ${in}.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build src/HooksPage-BsReactNativeNextDemo.cmj |  $src_root_dir/src/HooksPage.bs.js src/HooksPage-BsReactNativeNextDemo.cmi : build_cmj_cmi src/HooksPage.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+build src/HooksRoot.mlast : build_ast_and_module_sets_from_re $src_root_dir/src/HooksRoot.re |  ${ppx_checked_files}
+build src/HooksRoot.mlast.d : build_deps src/HooksRoot.mlast |  ${ppx_checked_files}
+build src/HooksRoot-BsReactNativeNextDemo.cmj |  $src_root_dir/src/HooksRoot.bs.js src/HooksRoot-BsReactNativeNextDemo.cmi : build_cmj_cmi src/HooksRoot.mlast
+  bsc_flags = $bsc_flags -bs-re-out -bs-super-errors
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:src
+rule build_package
+  command = ${bsc} -w -49 -no-alias-deps -bs-cmi-only -c ${in}
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build BsReactNativeNextDemo.cmi : build_package BsReactNativeNextDemo.mlmap
+build build.ninja : phony  ||  BsReactNativeNextDemo.cmi src/HooksRoot.mlast.d src/HooksPage.mlast.d

@@ -1,0 +1,12 @@
+# ninja log v5
+1	12	1554101335	BsReactNativeNextDemo.cmi	8dd8c32c6f3d5c56
+1	62	1554101335	src/HooksRoot.mlast	99dec4f7adfb6e77
+0	62	1554101335	src/HooksPage.mlast	1e3c5eab0aec24e2
+62	68	1554101335	src/HooksRoot.mlast.d	28c8aad02cf90d8e
+62	68	1554101335	src/HooksPage.mlast.d	90ff746faa589f26
+0	16	1554101335	src/HooksPage-BsReactNativeNextDemo.cmj	a219241d94e623e8
+0	16	1554101335	/Users/hew/Code/bs-react-native-next/src/HooksPage.bs.js	a219241d94e623e8
+0	16	1554101335	src/HooksPage-BsReactNativeNextDemo.cmi	a219241d94e623e8
+16	33	1554101335	src/HooksRoot-BsReactNativeNextDemo.cmj	f12fe8bc4c0f2dd9
+16	33	1554101335	/Users/hew/Code/bs-react-native-next/src/HooksRoot.bs.js	f12fe8bc4c0f2dd9
+16	33	1554101335	src/HooksRoot-BsReactNativeNextDemo.cmi	f12fe8bc4c0f2dd9

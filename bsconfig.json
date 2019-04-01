@@ -1,0 +1,20 @@
+{
+  "name": "bs-react-native-next-demo",
+  "sources": ["src"],
+  "namespace": true,
+  "bs-dependencies": [
+    "bs-react-native-monorepo/bs-react-native",
+    "bs-react-native-monorepo/bs-react-native-next",
+    "reason-react"
+  ],
+  "ppx-flags": [
+    "./ppx/reactjs_jsx_ppx_v3.exe"
+  ],
+  "refmt": 3,
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js"
+}
+
