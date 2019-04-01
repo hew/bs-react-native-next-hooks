@@ -5,6 +5,7 @@ This repo demostrates the basic setup for using reason react native with hooks. 
 # To Run
 
 `npm i`
+
 `npm run start`
 
 # NOTE:
